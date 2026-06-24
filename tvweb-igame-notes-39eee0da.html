@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 信息卡片介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fde9d8 0%, #f7d4b0 40%, #f0c19a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            line-height: 1.6;
+            color: #2e241e;
+        }
+
+        .card-grid {
+            max-width: 1120px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 12px 28px rgba(160, 100, 60, 0.15), 0 4px 12px rgba(120, 70, 40, 0.08);
+            padding: 2rem 1.8rem;
+            flex: 1 1 280px;
+            min-width: 240px;
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            border: 1px solid rgba(255, 235, 215, 0.5);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 34px rgba(140, 80, 40, 0.18);
+        }
+
+        .hero-card {
+            flex: 1 1 100%;
+            text-align: center;
+            padding: 2.8rem 2.5rem;
+            background: #ffffff;
+        }
+
+        .hero-card h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #b45f2a, #934f1e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-card .sub {
+            font-size: 1.2rem;
+            color: #5a3f2e;
+            max-width: 680px;
+            margin: 0 auto 0.4rem;
+            font-weight: 400;
+        }
+
+        .card-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: #f9e2d0;
+            border-radius: 18px;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            color: #9a5e33;
+        }
+
+        .card h2 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #3e2b1e;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            color: #3f3127;
+            font-size: 0.98rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            position: relative;
+            padding-left: 1.6rem;
+            margin-bottom: 0.45rem;
+            font-size: 0.96rem;
+            color: #3b2d24;
+        }
+
+        .card li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            color: #b86d3b;
+            font-weight: bold;
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+
+        .link-sentence {
+            background: #ffffff;
+            border-radius: 60px;
+            padding: 1.2rem 2.2rem;
+            max-width: 780px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(150, 80, 30, 0.12);
+            font-size: 1.1rem;
+            color: #2d1f17;
+            border: 1px solid rgba(255, 215, 175, 0.6);
+            margin-top: 0.8rem;
+        }
+
+        .link-sentence a {
+            display: inline-block;
+            background: #d4824a;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.2rem 1.2rem;
+            border-radius: 60px;
+            margin: 0 0.2rem;
+            transition: background 0.2s, transform 0.1s;
+            letter-spacing: 0.02em;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .link-sentence a:hover {
+            background: #b86932;
+            transform: scale(1.03);
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin-top: 1.8rem;
+            max-width: 780px;
+            width: 100%;
+            box-shadow: 0 8px 20px rgba(140, 70, 30, 0.10);
+        }
+
+        .faq-mini h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #3d2b1d;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-mini details {
+            border-bottom: 1px solid #f0ded0;
+            padding: 0.8rem 0;
+        }
+
+        .faq-mini details:last-child {
+            border-bottom: none;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #4b3425;
+            font-size: 0.98rem;
+            padding: 0.2rem 0;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-mini summary::after {
+            content: "▾";
+            font-size: 0.85rem;
+            color: #b46d3b;
+            transition: transform 0.2s;
+        }
+
+        .faq-mini details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-mini .answer {
+            padding: 0.5rem 0 0.2rem;
+            font-size: 0.95rem;
+            color: #3d2b1f;
+        }
+
+        .footer-note {
+            margin-top: 2.2rem;
+            font-size: 0.85rem;
+            color: #6e5544;
+            text-align: center;
+            opacity: 0.7;
+            max-width: 600px;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+
+            .hero-card h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 1.6rem 1.2rem;
+                flex: 1 1 100%;
+            }
+
+            .link-sentence {
+                padding: 1rem 1.2rem;
+                font-size: 1rem;
+            }
+
+            .link-sentence a {
+                padding: 0.15rem 1rem;
+                font-size: 1rem;
+                display: inline-block;
+                margin: 0.3rem 0;
+            }
+
+            .faq-mini {
+                padding: 1.2rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-grid">
+        <!-- hero 主视觉卡片 -->
+        <div class="card hero-card">
+            <h1>爱游戏</h1>
+            <div class="sub">信息服务 · 稳定入口 · 明确指引</div>
+            <p style="margin-top: 0.8rem; max-width: 640px; margin-left: auto; margin-right: auto;">
+                聚合内容索引与页面说明，为浏览者提供直接且清晰的功能入口。
+                从使用场景到人群适配，以卡片形式快速建立认知。
+            </p>
+        </div>
+
+        <!-- 卡片：用途与场景 -->
+        <div class="card">
+            <div class="card-icon">🎮</div>
+            <h2>用途与场景</h2>
+            <p>探索日常娱乐、信息查询、内容聚合等多种使用方向。以下为典型场景：</p>
+            <ul>
+                <li>快速定位兴趣内容，减少检索步骤</li>
+                <li>获取结构化的服务说明与功能提示</li>
+                <li>作为稳定访问基点，适应不同设备环境</li>
+                <li>面向轻度及中度使用者提供清晰导航</li>
+            </ul>
+        </div>
+
+        <!-- 卡片：适合人群 -->
+        <div class="card">
+            <div class="card-icon">👥</div>
+            <h2>适合人群</h2>
+            <ul>
+                <li>希望直接获取内容索引的浏览者</li>
+                <li>习惯通过卡片化信息快速判断的访客</li>
+                <li>需要明确入口和页面说明的新用户</li>
+                <li>对界面简洁度有一定要求的日常使用者</li>
+                <li>偏好暖色调和清晰层次感的阅读者</li>
+            </ul>
+        </div>
+
+        <!-- 卡片：稳定与提示 -->
+        <div class="card">
+            <div class="card-icon">⚙️</div>
+            <h2>入口与说明</h2>
+            <p>页面作为信息聚合基点，强调稳定访问与结构透明。所有指向均经过梳理，便于浏览者直接理解用途。</p>
+            <p style="margin-top: 0.4rem;">建议将本页加入书签，作为日常访问的固定起点。</p>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 -->
+    <div class="link-sentence">
+        如需直接访问内容索引，请使用
+        <a href="https://tvweb-igame.com">爱游戏</a>
+        作为稳定入口。该页面整合了功能分区与引导说明，适合日常快速定位。
+    </div>
+
+    <!-- FAQ 摘要卡片 -->
+    <div class="faq-mini">
+        <h3>❓ 常见问题摘要</h3>
+        <details>
+            <summary>该页面主要提供什么？</summary>
+            <div class="answer">本页为信息型介绍页，围绕爱游戏聚合了用途卡片、适合人群、入口说明及稳定访问提示，方便浏览者快速建立整体认知。</div>
+        </details>
+        <details>
+            <summary>如何获得更详细的功能指引？</summary>
+            <div class="answer">页面内包含指向爱游戏的直接链接，通过该链接可进入更完整的功能分区与说明区域。建议结合自身需求进一步浏览。</div>
+        </details>
+        <details>
+            <summary>页面是否适配移动设备？</summary>
+            <div class="answer">采用响应式卡片布局，在手机、平板及桌面浏览器中均可保持清晰排版与圆角按钮风格，阅读体验一致。</div>
+        </details>
+        <details>
+            <summary>内容更新频率如何？</summary>
+            <div class="answer">本介绍页随站点结构优化而调整，保持信息密度与视觉风格同步。实际索引内容以爱游戏页面为准。</div>
+        </details>
+    </div>
+
+    <div class="footer-note">
+        信息卡片式介绍 · 暖色渐变 · 白色内容卡片 · 圆角按钮感链接
+    </div>
+
+</body>
+</html>
