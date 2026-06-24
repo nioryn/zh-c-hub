@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>爱游戏 · 站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+            background-color: #f5f7fc;
+            color: #1e2a41;
+            line-height: 1.7;
+        }
+
+        /* --- 深色头图 --- */
+        .hero {
+            background: linear-gradient(145deg, #0b1a2e 0%, #1a2f4a 80%);
+            padding: 4.2rem 1.8rem 3.6rem;
+            text-align: center;
+            color: #e7edf8;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: #f5f7fc;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+            transform: scaleX(1.8);
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 680px;
+            margin: 0 auto 0.2rem;
+            opacity: .88;
+        }
+
+        .hero .lead {
+            font-size: 1.25rem;
+            font-weight: 350;
+            background: rgba(255, 255, 255, .08);
+            display: inline-block;
+            padding: .35rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            margin-top: .8rem;
+        }
+
+        /* --- 浅色正文区 --- */
+        .content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 2.8rem 1.6rem 4rem;
+            background: #ffffff;
+            border-radius: 32px 32px 0 0;
+            box-shadow: 0 -6px 24px rgba(0, 20, 40, .04);
+            position: relative;
+            z-index: 2;
+        }
+
+        .content section {
+            margin-bottom: 2.8rem;
+        }
+
+        .content section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.65rem;
+            font-weight: 500;
+            border-left: 5px solid #2a6b9e;
+            padding-left: 1rem;
+            margin-bottom: 1.2rem;
+            color: #0b1a2e;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: .6rem;
+            color: #1f3c5c;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: #1c6ea9;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(28, 110, 169, .35);
+            transition: border-color .2s, color .2s;
+            font-weight: 450;
+        }
+
+        a:hover,
+        a:focus {
+            color: #08416b;
+            border-bottom: 1px solid #08416b;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            background: #f0f4fc;
+            padding: 1rem 1.2rem;
+            margin-bottom: .9rem;
+            border-radius: 18px;
+            border-left: 4px solid #2a6b9e;
+            box-shadow: 0 2px 6px rgba(0,0,0,.02);
+            transition: background .15s;
+        }
+
+        .feature-list li strong {
+            color: #0f2b44;
+            font-weight: 550;
+            margin-right: .4rem;
+        }
+
+        .feature-list li:hover {
+            background: #e6edf9;
+        }
+
+        .scene-note {
+            background: #f8faff;
+            border: 1px solid #dce5f0;
+            border-radius: 28px;
+            padding: 1.6rem 1.8rem;
+            margin: 1.8rem 0 1.2rem;
+        }
+
+        .faq-mini {
+            background: #f7f9fe;
+            border-radius: 24px;
+            padding: 1.2rem 1.6rem;
+            margin-top: 1.8rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 480;
+            cursor: pointer;
+            color: #1a3f5e;
+            padding: .4rem 0;
+        }
+
+        .faq-mini p {
+            margin: .8rem 0 .2rem;
+            font-size: .96rem;
+            color: #2b4158;
+        }
+
+        .tagline {
+            text-align: center;
+            font-size: 1.05rem;
+            color: #2f4b6a;
+            border-top: 1px solid #dfe7f2;
+            padding-top: 2rem;
+            margin-top: 2.2rem;
+        }
+
+        .tagline a {
+            font-weight: 500;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 3rem 1.2rem 2.6rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero .lead {
+                font-size: 1rem;
+            }
+            .content {
+                padding: 1.8rem 1.2rem 3rem;
+                border-radius: 20px 20px 0 0;
+            }
+            h2 {
+                font-size: 1.35rem;
+                border-left-width: 4px;
+                padding-left: .7rem;
+            }
+            .feature-list li {
+                padding: .8rem 1rem;
+                font-size: .95rem;
+            }
+            .scene-note {
+                padding: 1.2rem 1rem;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .content {
+                padding: 3.6rem 2.8rem 4.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <div class="hero">
+        <h1>爱游戏 · 一处安静的起点</h1>
+        <p>
+            我们不制造狂热，只整理可信的线索。<br>
+            从一个简单地址出发，慢慢了解一个站点。
+        </p>
+        <div class="lead">认真整理 · 平实说明</div>
+    </div>
+
+    <!-- 浅色正文区 -->
+    <div class="content">
+
+        <!-- 开场短句 + 承接段落 -->
+        <section>
+            <h2>一、从何说起</h2>
+            <p>
+                很多站点在首页堆满闪动的按钮和夸张的标语，但 <strong>爱游戏</strong> 选择了另一种方式：
+                它把入口放在那里，等待真正需要它的人。这个页面就是围绕那个入口所做的笔记——
+                不是广告，更像一份使用前的简明参考。
+            </p>
+            <p>
+                如果你偶然发现这里，不妨把它当作一次轻量的浏览。我们整理了站点特点、适用场景以及一些常见疑问，
+                所有内容均基于公开信息与一般性观察，不构成担保或承诺。
+            </p>
+        </section>
+
+        <!-- 特点列表 -->
+        <section>
+            <h2>二、几个值得留意的特点</h2>
+            <ul class="feature-list">
+                <li>
+                    <strong>直接访问</strong> —— 
+                    无需层层跳转，站点结构清晰，<a href="https://vip-china-igame.com">爱游戏</a> 的首页本身即是主要导航。
+                </li>
+                <li>
+                    <strong>信息层级分明</strong> —— 
+                    栏目与内容区块有明确区分，适合习惯自主探索的用户。
+                </li>
+                <li>
+                    <strong>界面风格内敛</strong> —— 
+                    没有过度动画或自动播放的媒体，浏览节奏由你决定。
+                </li>
+                <li>
+                    <strong>基础功能完整</strong> —— 
+                    页面加载速度较快，移动端和桌面端的适配做得比较均衡。
+                </li>
+                <li>
+                    <strong>持续维护痕迹</strong> —— 
+                    从更新日志和版式细节可以感受到运营方对内容有固定整理习惯。
+                </li>
+            </ul>
+        </section>
+
+        <!-- 场景说明（取代旧式“介绍”） -->
+        <section>
+            <h2>三、什么人适合打开这个页面</h2>
+            <div class="scene-note">
+                <h3>▸ 想先了解再决定</h3>
+                <p>
+                    不必一上来就注册或下载。你可以把 <a href="https://vip-china-igame.com">爱游戏</a> 当作一个信息锚点，
+                    先大致浏览站点结构、阅读说明性文字，再判断是否符合自己的需求。
+                </p>
+                <h3>▸ 寻找可靠访问路径</h3>
+                <p>
+                    网络上的链接常常过时或跳转到无关页面。这里给出的地址经过核对，可以作为一个稳定的访问起点。
+                </p>
+                <h3>▸ 对比或记录参考</h3>
+                <p>
+                    如果你在梳理同类站点，可以把本页的特点列表作为一份简要的对照项，方便快速回忆该站点的风格基调。
+                </p>
+            </div>
+        </section>
+
+        <!-- 温和的提示 / FAQ 摘要 -->
+        <section>
+            <h2>四、一些经常被问到的</h2>
+            <div class="faq-mini">
+                <details>
+                    <summary>这个站点是官方的吗？</summary>
+                    <p>
+                        本介绍页仅为独立整理的说明内容，与站点运营方无直接关联。文中所指 <a href="https://vip-china-igame.com">爱游戏</a> 是一个可公开访问的网址，
+                        其官方性质请以域名注册信息和页面自身声明为准。
+                    </p>
+                </details>
+                <details>
+                    <summary>我需要注册才能浏览大部分内容吗？</summary>
+                    <p>
+                        根据常规观察，该站点的信息型页面在未登录状态下即可阅读，互动或特定功能可能需账户支持。
+                        建议直接访问首页并查看导航栏提示。
+                    </p>
+                </details>
+                <details>
+                    <summary>为什么特别强调“不夸张”？</summary>
+                    <p>
+                        太多网站用“全网第一”“立即暴富”之类的措辞消耗信任。我们希望保持描述克制，
+                        让你在不受干扰的前提下自行判断 <a href="https://vip-china-igame.com">爱游戏</a> 是否值得花时间。
+                    </p>
+                </details>
+            </div>
+        </section>
+
+        <!-- 温和结尾 + 再次自然嵌入链接 -->
+        <div class="tagline">
+            <p>
+                以上就是关于这个站点的整理笔记。<br>
+                如果你想自己看一眼，可以直接前往 <a href="https://vip-china-igame.com">爱游戏</a>，
+                所有判断都由你自己做出。
+            </p>
+            <p style="font-size: .92rem; opacity: .7; margin-top: 1.2rem;">
+                内容仅作参考，实际体验以站点为准。
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
