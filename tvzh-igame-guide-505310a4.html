@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 简明指南与访问提醒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e1e2a;
+            background-color: #f5f5f0;
+        }
+
+        /* ——— 深色头图 (hero) ——— */
+        .hero {
+            background: #11131a;
+            background-image: radial-gradient(circle at 20% 30%, #2b2f3a 0%, #0b0d12 95%);
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 2rem 3.5rem;
+            text-align: center;
+            color: #eaeaea;
+            border-bottom: 4px solid #d68c45;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            line-height: 1.2;
+            max-width: 800px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 span {
+            color: #d68c45;
+            font-weight: 500;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #bfc2cb;
+            max-width: 650px;
+            margin-bottom: 2rem;
+        }
+
+        .hero .tagline {
+            font-size: 1rem;
+            color: #9499a6;
+            border-top: 1px solid #2f333e;
+            padding-top: 1.5rem;
+            width: 70%;
+            max-width: 500px;
+        }
+
+        /* ——— 浅色正文区 ——— */
+        .content {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        .intro-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.5rem 2.8rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            margin-bottom: 2.8rem;
+        }
+
+        .intro-card h2 {
+            font-size: 1.9rem;
+            font-weight: 350;
+            margin-bottom: 1.4rem;
+            color: #1f232c;
+            letter-spacing: 0.01em;
+        }
+
+        .intro-card p {
+            margin-bottom: 1.4rem;
+            font-size: 1.05rem;
+        }
+
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 特点列表 —— 卡片网格 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin: 2.8rem 0;
+        }
+
+        .feature-item {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.6rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #efefe9;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+        }
+
+        .feature-item .emoji-badge {
+            display: inline-block;
+            background: #eae2d3;
+            border-radius: 40px;
+            padding: 0.3rem 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #2c303b;
+            margin-bottom: 0.9rem;
+            letter-spacing: 0.02em;
+        }
+
+        .feature-item h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: #1f232c;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            color: #3f4452;
+            line-height: 1.5;
+        }
+
+        .tip-block {
+            background: #f0eee5;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0;
+            border-left: 6px solid #d68c45;
+        }
+
+        .tip-block h3 {
+            font-size: 1.3rem;
+            font-weight: 450;
+            margin-bottom: 0.8rem;
+            color: #1f232c;
+        }
+
+        .tip-block p {
+            font-size: 1rem;
+            color: #2c303b;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+            margin: 2.5rem 0;
+        }
+
+        .faq-mini h3 {
+            font-size: 1.3rem;
+            font-weight: 450;
+            margin-bottom: 1.2rem;
+            color: #1f232c;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.8rem;
+            border-bottom: 1px solid #e5e2d8;
+            padding-bottom: 0.8rem;
+        }
+
+        .faq-mini details:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #1f232c;
+            padding: 0.2rem 0;
+            font-size: 1rem;
+        }
+
+        .faq-mini details p {
+            margin-top: 0.6rem;
+            color: #3f4452;
+            font-size: 0.95rem;
+            padding-left: 0.5rem;
+        }
+
+        .closing-note {
+            margin-top: 3rem;
+            padding: 1.8rem 0 0.8rem;
+            border-top: 2px solid #d9d6cc;
+            font-size: 1rem;
+            color: #3f4452;
+        }
+
+        .closing-note a {
+            color: #b0692a;
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+            font-weight: 500;
+        }
+
+        .closing-note a:hover {
+            color: #8a5320;
+            text-decoration: underline;
+        }
+
+        .inline-link {
+            color: #b0692a;
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+            font-weight: 450;
+        }
+
+        .inline-link:hover {
+            color: #8a5320;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 640px) {
+            .hero {
+                min-height: 60vh;
+                padding: 3rem 1.5rem 2.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .content {
+                padding: 2rem 1rem 3rem;
+            }
+
+            .intro-card {
+                padding: 1.8rem 1.4rem;
+            }
+
+            .feature-grid {
+                gap: 1.2rem;
+            }
+
+            .tip-block,
+            .faq-mini {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .faq-mini details p {
+                padding-left: 0.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <h1>打开一个页面，<br>不超过三次点击。<span>爱游戏</span> 希望如此。</h1>
+        <p>你不需要成为专家，也不需要翻遍菜单。好的体验往往藏在最简单的路径里——先看看首页，再决定下一步。</p>
+        <div class="tagline">一份关于访问节奏的简记 · 保持直接</div>
+    </section>
+
+    <!-- ========== 浅色正文区 ========== -->
+    <main class="content">
+
+        <!-- 承接段落 -->
+        <div class="intro-card">
+            <h2>从哪儿开始，其实很明确</h2>
+            <p>遇到一个新站点时，人们往往花几秒钟判断是否值得深入。<strong>爱游戏</strong> 的首页把功能入口和内容预览放在一眼能看见的位置，不需要反复寻找。左侧导航列出了主要区域，中间区域则展示当前热门或更新内容——这个布局对第一次来的人来说，足够友好。</p>
+            <p>如果你习惯先看界面再决定，那么首页最上方那一条提示栏也值得留意：它通常会告诉你活动状态或者临时通知。很多细小的信息都藏在那里，但又不会打扰你的视线。</p>
+        </div>
+
+        <!-- 特点列表 -->
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="emoji-badge">📍 位置</div>
+                <h3>首页即目录</h3>
+                <p>几乎不需要往下滚动就能看到主要分区：每个模块都有清晰标题，入口按钮的样式也足够明显。</p>
+            </div>
+            <div class="feature-item">
+                <div class="emoji-badge">⚡ 加载</div>
+                <h3>响应速度稳定</h3>
+                <p>页面资源经过压缩，图片采用懒加载。在普通网络下，从输入地址到完全渲染大约在 2~3 秒内完成。</p>
+            </div>
+            <div class="feature-item">
+                <div class="emoji-badge">🔍 搜索</div>
+                <h3>查找不绕路</h3>
+                <p>右上角搜索框支持模糊匹配，输入关键词后结果按相关性排列，不会出现大量无关条目。</p>
+            </div>
+            <div class="feature-item">
+                <div class="emoji-badge">📱 适配</div>
+                <h3>移动端优先</h3>
+                <p>按钮大小、间距都考虑了触控操作，在手机浏览器上阅读或操作时不太容易误触。</p>
+            </div>
+        </div>
+
+        <!-- 访问提醒 + 场景提示 -->
+        <div class="tip-block">
+            <h3>一点访问提醒</h3>
+            <p>如果你是通过第三方链接跳转过来的，建议先看一眼地址栏是否显示 <strong>tvzh-igame.com</strong>。有些镜像站点或旧域名虽然界面相似，但数据不同步。另外，首次访问时可能会有 cookie 授权弹窗——那是正常的站点记录偏好设置，按你的习惯选择即可。<br>
+            还有一个很实际的小建议：如果页面加载后部分图片未显示，可以尝试刷新一次，有时是 CDN 节点缓存延迟。</p>
+        </div>
+
+        <!-- FAQ 摘要 (简洁节制) -->
+        <div class="faq-mini">
+            <h3>几个快速解答 · FAQ 摘要</h3>
+            <details>
+                <summary>需要注册才能浏览全部内容吗？</summary>
+                <p>大部分内容（包括列表、预览和部分详情）对访客开放。少数需要账号的功能（如收藏、评论）会提示登录，但阅读和浏览基本不受限。</p>
+            </details>
+            <details>
+                <summary>移动端布局和电脑端差别大吗？</summary>
+                <p>布局会自适应：电脑端是两栏或三栏结构，手机端转为单列纵向排列。核心功能按钮的位置保持一致，不会突然找不到某个入口。</p>
+            </details>
+            <details>
+                <summary>页面语言可以切换吗？</summary>
+                <p>目前界面以中文为主，部分术语和说明保留了简洁的英文标注（如搜索框 placeholder）。暂时没有多语言切换开关，但主要提示信息都使用中文描述。</p>
+            </details>
+        </div>
+
+        <!-- 温和结尾 + 链接嵌入 -->
+        <div class="closing-note">
+            <p>说到底，一个站点的价值在于内容本身，而非导航有多花哨。如果你觉得这里值得花点时间，不妨从 <a href="https://tvzh-igame.com" class="inline-link">爱游戏</a> 的首页开始慢慢浏览——它没有复杂的引导，也没有突然弹出的打扰。找到你想看的东西，然后沉浸进去，就够了。</p>
+            <p style="margin-top: 1.2rem; font-size: 0.95rem; color: #5d6270;">希望这次访问，和你预期的一样顺畅。</p>
+        </div>
+
+    </main>
+
+</body>
+</html>
