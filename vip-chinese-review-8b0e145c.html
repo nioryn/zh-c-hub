@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 常来坐坐 · 信息卡片</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #faf8f5;
+            font-family: 'Segoe UI', 'Roboto', 'Noto Sans SC', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #2c2b28;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 800px;
+            width: 100%;
+            background: #fffffffa;
+            padding: 2.2rem 2rem 2.8rem;
+            border-radius: 28px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.02);
+            backdrop-filter: blur(2px);
+            transition: all 0.15s ease;
+        }
+
+        /* 主视觉 — 氛围头图 */
+        .hero-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge span {
+            display: inline-block;
+            background: #ede8e0;
+            color: #3d3b36;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            border: 1px solid #dad3ca;
+        }
+
+        .hero-icon {
+            font-size: 2.1rem;
+            line-height: 1;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.04));
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #2d2925;
+            margin-top: 0.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+
+        .hero-desc {
+            font-size: 1.08rem;
+            color: #4f4b44;
+            margin-bottom: 2.4rem;
+            border-left: 3px solid #c5b9aa;
+            padding-left: 1.2rem;
+        }
+
+        /* 卡片网格 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: #f7f3ee;
+            border-radius: 24px;
+            padding: 1.5rem 1.8rem;
+            border: 1px solid #e5ddd4;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+            transition: background 0.2s;
+        }
+
+        .card:hover {
+            background: #f3ede6;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 520;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            color: #2f2c27;
+        }
+
+        .card-title i {
+            font-style: normal;
+            background: #e3d9ce;
+            width: 1.8rem;
+            height: 1.8rem;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .card p, .card li {
+            color: #3d3933;
+            font-size: 0.975rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0.25rem;
+            margin-top: 0.2rem;
+        }
+
+        .card ul li {
+            position: relative;
+            padding-left: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .card ul li::before {
+            content: "·";
+            font-weight: bold;
+            position: absolute;
+            left: 0.2rem;
+            color: #9b8c7b;
+        }
+
+        /* 引用 / 提示框 */
+        .quote-box {
+            background: #f3efe9;
+            border-left: 6px solid #c7b9a8;
+            padding: 1.4rem 1.6rem;
+            border-radius: 18px;
+            margin: 2rem 0 2.2rem;
+            font-size: 1rem;
+            color: #3e3a33;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+        }
+
+        .quote-box strong {
+            color: #2f2a22;
+        }
+
+        .quote-box a {
+            color: #5f4f3b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #bfaf9c;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .quote-box a:hover {
+            color: #8f765d;
+            text-decoration-color: #8f765d;
+        }
+
+        /* 适合人群 inline 卡片 */
+        .inline-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .inline-tags span {
+            background: #e7dfd5;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #3b3730;
+            border: 1px solid #d6ccc0;
+        }
+
+        /* 自然链接段落 + FAQ 摘要 */
+        .link-paragraph {
+            margin: 2rem 0 0.8rem;
+            padding: 1rem 0 0.4rem;
+            border-top: 1px solid #e5ddd4;
+        }
+
+        .link-paragraph p {
+            margin-bottom: 0.8rem;
+        }
+
+        .link-paragraph a {
+            color: #5f4f3b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #c5b4a0;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .link-paragraph a:hover {
+            color: #8f765d;
+            text-decoration-color: #8f765d;
+        }
+
+        .faq-mini {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.6rem;
+            margin: 1.2rem 0 1.8rem;
+        }
+
+        .faq-item {
+            background: #f5f0ea;
+            padding: 0.7rem 1.2rem;
+            border-radius: 30px;
+            border: 1px solid #e2d8cc;
+            font-size: 0.95rem;
+        }
+
+        .faq-item strong {
+            margin-right: 0.4rem;
+            color: #4c443a;
+        }
+
+        .faq-item span {
+            color: #524c43;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, #e5ddd4 30%, transparent);
+            margin: 1.4rem 0 1.2rem;
+        }
+
+        .footer-note {
+            font-size: 0.8rem;
+            color: #8b8277;
+            text-align: center;
+            margin-top: 2.2rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 540px) {
+            body { padding: 1rem 0.8rem; }
+            .page { padding: 1.5rem 1.2rem 2rem; border-radius: 24px; }
+            h1 { font-size: 1.8rem; }
+            .card { padding: 1.2rem 1.2rem; }
+            .hero-desc { font-size: 1rem; padding-left: 0.9rem; }
+            .quote-box { padding: 1rem 1.2rem; }
+        }
+
+        @media (min-width: 768px) {
+            .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 主视觉 / 再次访问 & 收藏 -->
+    <div class="hero-badge">
+        <span class="hero-icon">🏡</span>
+        <span>再次访问 · 收藏 · 日常关注</span>
+        <span>常来坐坐</span>
+    </div>
+    <h1>爱游戏 · 你的数字休憩站</h1>
+    <div class="hero-desc">
+        有些页面值得再次打开，有些地方适合慢慢逛。<br>
+        把这里加入收藏夹，就像在书架里留一个舒服的位置。
+    </div>
+
+    <!-- 信息卡片：用途 + 适合人群 -->
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-title"><i>📌</i> 用途卡片</div>
+            <p>爱游戏可以帮你快速找到感兴趣的资讯、日常话题分享，以及一些值得反复翻阅的内容整理。不止是资讯，更像一个安静的信息角落。</p>
+            <ul>
+                <li>日常浏览与轻阅读</li>
+                <li>收藏有价值的内容片段</li>
+                <li>偶尔回来看看更新</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-title"><i>👥</i> 适合人群</div>
+            <p>不论你是第一次来，还是已经来过几次——</p>
+            <div class="inline-tags">
+                <span>喜欢简单排版的读者</span>
+                <span>习惯用收藏夹整理信息的人</span>
+                <span>想要一个不嘈杂的线上角落</span>
+                <span>偶尔回来看看的回头客</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引用块 / 提示框 -->
+    <div class="quote-box">
+        <strong>📎 再次访问的小提示：</strong> 如果你觉得这里的风格和内容对味，不妨把页面添加到浏览器书签。下次想找个安静的地方随便看看，直接点开就好。也可以顺手把 <a href="https://vip-chinese-igame.com">爱游戏</a> 放在常用标签栏，方便随时回来。
+    </div>
+
+    <!-- 自然链接段落 + FAQ 摘要 -->
+    <div class="link-paragraph">
+        <p>有人习惯每周回来翻一翻，也有人是偶尔想起来才点开。但不管哪种节奏，<a href="https://vip-chinese-igame.com">爱游戏</a> 都保持着自己的步调——不吵不赶，内容更新也不会过度频繁。适合那些想要一点点新鲜感，又不想被信息淹没的人。</p>
+        <p>如果你最近没来，也不用担心错过什么；每次打开，都能自然接上。</p>
+    </div>
+
+    <!-- FAQ 摘要卡片风格 -->
+    <div class="faq-mini">
+        <div class="faq-item"><strong>❓ 需要注册吗？</strong><span>不用，直接访问就可以浏览。</span></div>
+        <div class="faq-item"><strong>❓ 内容更新频率？</strong><span>不定期更新，保持适度节奏。</span></div>
+        <div class="faq-item"><strong>❓ 可以收藏吗？</strong><span>当然，收藏后随时回来都很方便。</span></div>
+    </div>
+
+    <hr>
+    <div class="footer-note">
+        慢慢看，常回来 · 用收藏代替记忆
+    </div>
+</div>
+</body>
+</html>
